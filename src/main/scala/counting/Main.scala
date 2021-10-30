@@ -15,9 +15,11 @@ object Main {
       "all", "there", "when", "up", "use", "your", "how", "said", "an", "each",
       "she")
 
-    val numberOfWordsToRerturn = 50
+    val numberOfWordsToReturn = 50
 
-    val pipeline: String => Set[String] = grabFile _ andThen extractWords andThen(getTopNWords(_, wordsToIgnore, numberOfWordsToRerturn))
+    val topWords: List[String] => Set[String] = getTopNWords(wordsToIgnore, numberOfWordsToReturn, _)
+
+    val pipeline: String => Set[String] = grabFile _ andThen extractWords andThen topWords
 
     pipeline(url).foreach(println)
   }

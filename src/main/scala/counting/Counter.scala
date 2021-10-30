@@ -18,7 +18,7 @@ object Counter {
     .filterNot(word => word.isEmpty)
     .toList
 
-  def getTopNWords(words: List[String], wordsToIgnore: Set[String], numberOfWordsToReturn: Int = 50): Set[String] = {
+  def getTopNWords(wordsToIgnore: Set[String], numberOfWordsToReturn: Int, words: List[String]): Set[String] = {
 
     val toIgnore = wordsToIgnore.map(word => word.toLowerCase)
 

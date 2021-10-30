@@ -27,16 +27,16 @@ class CounterSpec extends FreeSpec with Matchers {
 
       val mobyDickWords = extractWords(grabFile("http://www.gutenberg.org/files/2701/2701-0.txt"))
 
-      mobyDickWords.length shouldBe 215864
+      mobyDickWords.length shouldBe 215436
     }
 
     "grab the most frequent words" in {
 
-      val sillyWords = getTopNWords(extractWords("a a a a b b b c c "), Set(), 2)
+      val sillyWords = getTopNWords(Set(), 2, extractWords("a a a a b b b c c "))
 
       sillyWords shouldBe Set("a", "b")
 
-      val topMobyDickWords = getTopNWords(extractWords(grabFile("http://www.gutenberg.org/files/2701/2701-0.txt")), Set(), 5)
+      val topMobyDickWords = getTopNWords(Set(), 5, extractWords(grabFile("http://www.gutenberg.org/files/2701/2701-0.txt")))
 
       topMobyDickWords shouldBe Set("a", "to", "of", "and", "the")
     }
